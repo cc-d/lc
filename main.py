@@ -9,6 +9,7 @@ def main(module_name: str):
     smeths = [m for m in dir(s) if not m.startswith('_')]
     smeth = getattr(s, smeths[0])
 
+    print(f'MODULE: {module.__name__}.py METHOD: {smeths[0]}()')
     failmsgs = []
     for tc in module.TEST:
         tmsg = f'{smeths[0]}{tc[0]} -> {tc[1]}'
@@ -19,6 +20,8 @@ def main(module_name: str):
         except AssertionError as e:
             failmsgs.append(f'{tmsg} (return: {result})')
 
+    if failmsgs == []:
+        print('All Tests Passed')
     for fmsg in failmsgs:
         print(f'TEST CASE FAILED: {fmsg}')
 
