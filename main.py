@@ -10,20 +10,22 @@ def main(module_name: str):
     smeth = getattr(s, smeths[0])
 
     print(f'MODULE: {module.__name__}.py METHOD: {smeths[0]}()')
-    failmsgs = []
+    msgs = []
     for tc in module.TEST:
-        tmsg = f'{smeths[0]}{tc[0]} -> {tc[1]}'
-        print('\n' + tmsg)
+        methmsg = f'{smeths[0]}{tc[0]}'
+        print(f'{methmsg} -> {tc[1]}')
         try:
             result = smeth(*tc[0])
             assert result == tc[1]
+            msgs.append((f'{methmsg} -> {tc[1]})', True))
         except AssertionError as e:
-            failmsgs.append(f'{tmsg} (return: {result})')
+            msgs.append((f'{methmsg} -> {tc[1]} | {result}', False))
 
-    if failmsgs == []:
-        print('All Tests Passed')
-    for fmsg in failmsgs:
-        print(f'TEST CASE FAILED: {fmsg}')
+    for msg in msgs:
+        if msg[1]:
+            print(f'PASSED: {msg}')
+        else:
+            print(f'TEST CASE FAILED: {msg}')
 
 
 if __name__ == '__main__':
