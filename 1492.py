@@ -13,3 +13,6 @@ class Solution:
                     return int(div)
 
         return -1
+
+
+TEST = [((12, 3), 3), ((7, 2), 8), ((4, 4), -2)]
