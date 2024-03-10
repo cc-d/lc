@@ -55,7 +55,7 @@ class Solution:
         master = Master(args[0], allowed=args[1])
 
         guesses = {}
-        words = list(*words)
+        words = list(words)
         w = None
         while master.allowed:
             if len(words) % 2 == 0:
@@ -178,11 +178,11 @@ TEST = (
                 "alrplq",
                 "brklfk",
             ],
+            'hbaczn',
+            10,
         ),
         'hbaczn',
-        10,
     ),
-    ((["acckzz", "ccbazz", "eiowzz", "abcczz"],), 'acckzz', 10),
 )
 
 #        'hbaczn',

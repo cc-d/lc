@@ -18,7 +18,7 @@ def main(module_name: str):
         methmsg = truncstr(f'{smeths[0]}{tc[0]}', 100)
         print(f'{methmsg} -> {tc[1]}')
         try:
-            result = smeth(*tc[0 : len(tc) + 1])
+            result = smeth(*tc[0])
             assert result == tc[1]
             msgs.append((f'{methmsg} -> {tc[1]})', True))
         except AssertionError as e:
