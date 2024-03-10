@@ -40,4 +40,3 @@ TEST = [
     (('oygwwncfgewspmqvbez',), 3),
     (('hdklqkcssgxlvehva',), 4),
 ]
-TEST = [*TEST]
