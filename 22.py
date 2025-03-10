@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import unittest as ut
-from itertools import product
+from itertools import permutations
 from typing import List
 
 
@@ -20,8 +20,20 @@ def valid(s: str) -> bool:
 
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        ps = {''.join(s) for s in product('()', repeat=n * 2)}
-        return [p for p in ps if valid(p)]
+        res = []
+        stack = [("", 0, 0)]
+
+        while stack:
+            s, left, right = stack.pop()
+            if len(s) == n * 2:
+                res.append(s)
+                continue
+            if left < n:
+                stack.append((s + "(", left + 1, right))
+            if right < left:
+                stack.append((s + ")", left, right + 1))
+
+        return res
 
 
 class Test(ut.TestCase):
@@ -42,6 +54,22 @@ class Test(ut.TestCase):
             2: ['()()', '(())'],
             3: ["((()))", "(()())", "(())()", "()(())", "()()()"],
             1: ['()'],
+            4: [
+                '((()))()',
+                '(())()()',
+                '()((()))',
+                '(()())()',
+                '()()(())',
+                '((())())',
+                '(()()())',
+                '()()()()',
+                '((()()))',
+                '(()(()))',
+                '(())(())',
+                '()(())()',
+                '(((())))',
+                '()(()())',
+            ],
         }.items():
 
             self.assertEqual(set(Solution().generateParenthesis(k)), set(v))
